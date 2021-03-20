@@ -59,7 +59,7 @@ public class PersonDto {
     }
 
 
-    public  PersonDto(Person person){
+    public PersonDto(Person person){
 
         this.setId(person.getId());
         this.setFirstName(person.getFirstName());
@@ -67,8 +67,6 @@ public class PersonDto {
         this.setCpf(person.getCpf());
         this.setBirthDate(person.getBirthDate());
         this.setPhoneList(person.getPhoneList());
-
-
 
     }
 
