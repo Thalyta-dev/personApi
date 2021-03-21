@@ -1,6 +1,7 @@
 package com.personApi.personApi.service;
 
 
+import com.personApi.personApi.Exceptions.PersonNotFoundException;
 import com.personApi.personApi.dto.MensageResponseDto;
 import com.personApi.personApi.dto.PersonDto;
 import com.personApi.personApi.entity.Person;
@@ -9,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -54,5 +55,11 @@ public class PersonService {
 
     public void deleteAllPerson() {
         personRepository.deleteAll();
+    }
+
+    public PersonDto personBirthDate(LocalDate birthDate) throws PersonNotFoundException {
+        Person person = personRepository.findByBirthDate(birthDate).orElseThrow(() -> new PersonNotFoundException(birthDate));
+        return new PersonDto(person);
+
     }
 }
