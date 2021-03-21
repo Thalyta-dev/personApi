@@ -41,13 +41,18 @@ public class PersonService {
     }
 
     public PersonDto findById(Long id) throws PersonNotFoundException {
-        Optional<Person> pessoa = personRepository.findById(id);
+       // Optional<Person> pessoa =  personRepository.findById(id);
+        Person person =  personRepository.findById(id).orElseThrow(()-> new PersonNotFoundException(id));
+        return new PersonDto(person);
+    }
 
-        if(pessoa.isPresent()){
-            return new PersonDto(pessoa.get());
-        }else{
-            throw  new PersonNotFoundException(id);
-        }
 
+    public void deletePerson(Long id) throws PersonNotFoundException {
+        this.findById(id);
+       personRepository.deleteById(id);
+    }
+
+    public void deleteAllPerson() {
+        personRepository.deleteAll();
     }
 }
