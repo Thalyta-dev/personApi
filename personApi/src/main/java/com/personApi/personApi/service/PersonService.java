@@ -62,4 +62,15 @@ public class PersonService {
         return new PersonDto(person);
 
     }
+
+    public MensageResponseDto updateById(Long id, PersonDto personDto) throws PersonNotFoundException {
+        Person up = this.findById(id).toModel();
+        Person person =  personDto.toModel();
+        person.setId(id);
+        personRepository.save(person);
+        return MensageResponseDto
+                .builder()
+                .message("An person with id"  + person.getId()+ "has been modified")
+                .build();
+    }
 }

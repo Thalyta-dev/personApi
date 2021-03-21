@@ -61,4 +61,11 @@ public class PersonController {
         return personService.personBirthDate(LocalDate.parse(birthDate));
     }
 
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public MensageResponseDto ipdateById(@PathVariable Long id, @RequestBody PersonDto personDto) throws PersonNotFoundException {
+        return personService.updateById(id, personDto);
+
+    }
+
 }
