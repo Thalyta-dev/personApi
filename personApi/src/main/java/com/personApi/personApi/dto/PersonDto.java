@@ -1,5 +1,6 @@
 package com.personApi.personApi.dto;
 
+import com.personApi.personApi.Exceptions.ExistCpf;
 import com.personApi.personApi.entity.Person;
 import com.personApi.personApi.entity.Phone;
 import lombok.AllArgsConstructor;
@@ -37,6 +38,7 @@ public class PersonDto {
 
     private LocalDate birthDate;
 
+    @ExistCpf
     @NotEmpty
     @CPF
     private String cpf;

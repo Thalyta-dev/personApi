@@ -13,4 +13,6 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     //Feito com sql, na mão. Usada geralmente para consultas mais complexas
     @Query("SELECT P FROM Person P where P.birthDate = :birthDate")
     Person findPersonBirthDate(LocalDate birthDate);
+
+    Optional<Person> findByCpf(String cpf);
 }
